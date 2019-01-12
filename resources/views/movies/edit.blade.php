@@ -11,20 +11,22 @@
         @csrf
         @method('patch')
         <div class="box">
-            <div class="field">
-                <label for="title" class="label">Title</label>
-                <div class="control">
-                    <input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" placeholder="Movie Title" value="{{ $movie->title }}">
+            <div style="display: flex">
+                <div class="field">
+                    <label for="title" class="label">Title</label>
+                    <div class="control">
+                        <input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" placeholder="Movie Title" value="{{ $movie->title }}">
+                    </div>
                 </div>
-            </div>
-            <div class="field">
-                <label for="year" class="label">Release Year</label>
-                <div class="control">
-                    <input type="number" class="input {{ $errors->has('year') ? 'is-danger' : '' }}" name="year" placeholder="Movie Release Year" value="{{ $movie->year }}">
+                <div class="field">
+                    <label for="year" class="label">Release Year</label>
+                    <div class="control">
+                        <input type="number" class="input {{ $errors->has('year') ? 'is-danger' : '' }}" name="year" placeholder="Movie Release Year" value="{{ $movie->year }}">
+                    </div>
                 </div>
             </div>
             <div class="box">
-                <label for="auto_fill" class="checkbox">
+                <label class="checkbox box checkbox-zoom" style="display: inline-block; margin-bottom: 0.5em; padding: 10px">
                     <input type="checkbox"
                            name="auto_fill"
                            onChange="var element = document.getElementById('description');
@@ -46,17 +48,17 @@
                 </div>
             </div>
         </div>
+        @include('errors')
         <div>
-            <button type="submit" class="button is-link">Update Movie</button>
+            <button type="submit" class="button is-info poster">Update Movie</button>
         </div>
     </form>
-    @include('errors')
     <form action="/movies/{{ $movie->id }}" method="post">
         @csrf
         @method('delete')
         <div class="field">
             <div class="control">
-                <button type="submit" class="button is-danger">Delete Project</button>
+                <button type="submit" class="button is-danger poster">Delete Project</button>
             </div>
         </div>
     </form>

@@ -23,14 +23,14 @@
                 </div>
             </div>
             <div class="box">
-                <label for="auto_fill" class="checkbox">
-                    <input type="checkbox"
-                           name="auto_fill"
-                           onChange="var element = document.getElementById('description');
-                           if (this.checked) { element.disabled = true; }
-                           else { element.disabled = false; }">
-                    Auto Fill Description
-                </label>
+                    <label class="checkbox box checkbox-zoom" style="display: inline-block; margin-bottom: 0.5em; padding: 10px">
+                        <input type="checkbox"
+                               name="auto_fill"
+                               onChange="var element = document.getElementById('description');
+                               if (this.checked) { return element.disabled = true; }
+                               return element.disabled = false;">
+                        Auto Fill Description
+                    </label>
                 <div class="field">
                     <label for="description" class="label">Description</label>
 
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div>
-            <button type="submit" class="button is-link">Add Movie</button>
+            <button type="submit" class="button is-link poster">Add Movie</button>
         </div>
         @include('errors')
     </form>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
@@ -15,4 +16,9 @@ class Movie extends Model
         'description',
         'auto_fill'
     ];
+
+    public function getAgeAttribute()
+    {
+        return Carbon::now()->year($this->year)->diffForHumans();
+    }
 }

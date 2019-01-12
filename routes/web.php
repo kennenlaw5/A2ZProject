@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $movies = \App\Movie::all();
+    return view('welcome', compact('movies'));
+})->name('main');
 
 Auth::routes();
 

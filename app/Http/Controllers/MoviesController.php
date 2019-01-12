@@ -18,7 +18,8 @@ class MoviesController extends Controller
         $movies = Movie::all();
         $maxYear = Carbon::now()->year;
         foreach ($movies as $movie) {
-            $movie['age'] = $maxYear - $movie->year;
+//            $movie->age = $maxYear - $movie->year;
+//            $movie->age = Carbon::now()->year($movie->year)->diffForHumans();
         }
         return view('movies.index', compact('movies'));
     }
@@ -90,7 +91,7 @@ class MoviesController extends Controller
         }
 
         $parsedTitle = str_replace(' ','+', $attributes['title']);
-        $html = file_get_contents('https://www.imdb.com/find?ref_=nv_sr_fn&q=' . $parsedTitle . '+' . $attributes['year'] . '&s=all');
+        $html = file_get_contents('https://www.imdb.com/find?ref_=nv_sr_fn&q=' . $parsedTitle . '+%28' . $attributes['year'] . '%29&s=all');
         $target = strpos($html, 'a href="', strpos($html, 'class="findResult odd"')) + 8;
         $targetEnd = strpos($html, '"', $target);
         $href = 'https://www.imdb.com' . substr($html, $target,$targetEnd-$target);
@@ -102,7 +103,7 @@ class MoviesController extends Controller
         $partialMatch = false;
 
         foreach ($parsedTitle as $titlePart) {
-            if (strpos($title, $titlePart)) {
+            if (strpos($title, $titlePart) || strpos($title, $titlePart) === 0) {
                 $partialMatch = true;
             }
         }
